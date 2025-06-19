@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        if (location.protocol == 'http:')
+            location.href = location.href.replace(/^http:/, 'https:');
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Оригинальная система самопознания и саморазвития. Инструмент, который сделает твою жизнь более продуктивной и увлекательной.">
+    <title>Прогрессинатор</title>
+    <link rel="stylesheet" href="bulma.css">
+    <link rel="stylesheet" href="app.css">
+    <meta property="og:url" content="https://lifetuner.surge.sh/">
+    <meta property="og:type" content="article">
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:image:width" content="576">
+    <meta property="og:image:height" content="576">
+    <meta property="og:title" content="Прогрессинатор">
+    <meta property="og:description" content="Оригинальная система самопознания и саморазвития. Инструмент, который сделает твою жизнь более продуктивной и увлекательной.">
+    <meta property="og:image" content="https://lifetuner.surge.sh/banner.jpg">
+    <link rel="manifest" href="rus.webmanifest">
+    <link rel="apple-touch-icon" href="icons/app192.png">
+    <link rel="icon" href="icons/app48.png">
+    <link rel="shortcut icon" href="icons/app48.png">
+    <script type="text/javascript" src="core.js?v=35"></script>
+    <script type="text/javascript" src="app.js?v=35"></script>
+    <script src="https://bastyon.com/js/lib/apps/sdk.js"></script>
+    <script type="text/javascript" src="image.js?v=35"></script>
+    <style id="fix-layout" type="text/css"></style>
+</head>
+<body>
+
+
+<div class="bg"></div>
+
+
+<div class="block page" id="homepage" data-name="homepage">
+<div class="box">
+
+<div class="field is-grouped">
+    <div class="control">
+        <a onclick="location.hash = '_menu'; setInstructed()"><button class="button is-rounded glyph question"></button></a>
+    </div>
+    <div class="control is-expanded">
+        <h1 class="title has-text-centered" onclick="toggleIntro()">
+            <img src="logo.png" width="120px" />
+        </h1>
+    </div>
+    <div class="control" id="like">
+        <button class="button is-rounded glyph like" onclick="location.hash = 'info-shorewards'"></button>
+    </div>
+</div>
+
+<div class="main-badge-container">
+    <img onclick="location.hash = '_upload'" id="badge" class="hidden" />
+    <div id="intro" class="hidden">
+        <span>Оценить&nbsp;силу</span>
+        <span>этого&nbsp;изящного&nbsp;инструмента,</span>
+        <span>меняющего&nbsp;жизнь&nbsp;к&nbsp;лучшему,</span>
+        <span>ты&nbsp;сможешь&nbsp;через&nbsp;неделю&nbsp;простой,</span>
+        <span>но&nbsp;честной&nbsp;и&nbsp;вдумчивой&nbsp;практики.</span>
+        <span><b>Если&nbsp;не&nbsp;боишься&nbsp;начать</b></span>
+        <span><b>узнавать&nbsp;себя&nbsp;настоящего,</b></span>
+        <span><b>ознакомься&nbsp;с&nbsp;<a onclick="location.hash = '_menu'; setTimeout(() => {setInstructed(); highlightMenuButton();}, 50)">инструкцией</a></b></span>
+        <span><b>и&nbsp;приступим.</b></span>
+    </div>
+</div>
+
+<div class="today">
+    <table class="plus points disabled">
+        <tr>
+            <td id="EEE" class="E" style="border-top-left-radius:1rem"></td>
+            <td id="PPP" class="P"></td>
+            <td id="III" class="I"></td>
+            <td id="SSS" class="S"></td>
+            <td id="MMM" class="M" style="border-top-right-radius:1rem"></td>
+        </tr>
+        <tr>
+            <td id="EE" class="E"></td>
+            <td id="PP" class="P"></td>
+            <td id="II" class="I"></td>
+            <td id="SS" class="S"></td>
+            <td id="MMM" class="M"></td>
+        </tr>
+        <tr>
+            <td id="E" class="E">+</td>
+            <td id="P" class="P">+</td>
+            <td id="I" class="I">+</td>
+            <td id="S" class="S">+</td>
+            <td id="MMM" class="M">+</td>
+        </tr>
+    </table>
+    <table class="totals">
+        <tr>
+            <td class="bg E"></td>
+            <td class="bg P"></td>
+            <td class="bg I"></td>
+            <td class="bg S"></td>
+            <td class="bg M"></td>
+        </tr>
+        <tr>
+            <td class="E score">000</td>
+            <td class="P score">000</td>
+            <td class="I score">000</td>
+            <td class="S score">000</td>
+            <td class="M score">000</td>
+        </tr>
+    </table>
+</div>
+
+<div class="field is-grouped" style="position:relative; z-index:1; background:white;">
+    <div class="control">
+        <button onclick="shiftDate(-1)" class="button is-rounded glyph arrow-left"></button>
+    </div>
+    <div class="control is-expanded has-text-centered date-day">
+        <div id="date">date</div>
+        <div id="day">day</div>
+        <div id="hint" class="hidden">
+            <span class="tag is-rounded is-medium">
+            +<span id="hint-points">15</span>&nbsp;
+            <i class="E">к опыту</i>
+            <i class="P">к силе</i>
+            <i class="I">к интеллекту</i>
+            <i class="S">к мастерству</i>
+            <i class="M">к «магии»</i>
+            </span>
+        </div>
+    </div>
+    <div class="control">
+        <button id="btn-next-day" onclick="shiftDate(1)" class="hidden button is-rounded glyph arrow-right"></button>
+        <a onclick="displayHistory(); location.hash = 'plus-history';">
+            <button id="btn-calendar" class="button is-rounded glyph calendar"></button>
+        </a>
+    </div>
+</div>
+
+</div>
+
+
+
+<div class="box" id="statistics">
+
+<h3><a onclick="location.hash = 'info-coins';">Прогресскоины</a></h3>
+
+<h4>За сегодня</h4>
+
+<table>
+<tr>
+<td></td>
+<td>a</td>
+<td>b1</td>
+<td>b2</td>
+<td>b3</td>
+<td>sum</td>
+</tr>
+<tr>
+<td>Я</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table>
+
+<h4>За вчера</h4>
+
+<table>
+<tr>
+<td></td>
+<td>a</td>
+<td>b1</td>
+<td>b2</td>
+<td>b3</td>
+<td>sum</td>
+</tr>
+<tr>
+<td>Я</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table>
+
+<h4 id="month-ru">За месяц</h4>
+
+<table>
+<tr>
+<td></td>
+<td>a</td>
+<td>b1</td>
+<td>b2</td>
+<td>b3</td>
+<td>sum</td>
+</tr>
+<tr>
+<td>Я</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table>
+
+
+
+</div>
+</div>
+
+
+
+<div class="block page hidden" id="panel">
+<div class="box">
+
+<div class="field is-grouped">
+    <div class="control">
+        <a onclick="location.hash += '_menu'">
+            <button class="button is-rounded glyph question"></button>
+        </a>
+    </div>
+    <div class="control is-expanded">
+        <h1 class="has-text-centered">
+            <a onclick="location.hash = 'homepage'"><img src="logo.png" width="120px" /></a>
+        </h1>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'">
+            <button class="button is-rounded glyph upward"></button>
+        </a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+
+<div class="block page sub hidden" data-name="info-about">
+<div class="box">
+
+<h2 class="subtitle"><span>Коротко о главном</span></h2>
+<p><b>Прогрессинатор</b> — инструмент, который поможет тебе сделать свою&nbsp;жизнь более продуктивной, увлекательной и счастливой.</p>
+<p><b>Прогрессинация</b> — метод самопознания и саморазвития, состоящий в том, чтобы каждый вечер ставить себе оценки за день по четырём параметрам и видеть наглядную картинку, показывающую, чем наполнена твоя повседневность, чего в ней действительно не хватает для счастья и как это ис­пра­вить.</p>
+<p><b>Счастье</b> — это чувство полноты и ценности жизни. Будем учиться наполнять свою жизнь приятными и полезными вещами, поймём, кто мы&nbsp;есть и для чего мы здесь.</p>
+<p>Человек существо сложное, многомерное. Из огромного числа его измерений (параметров), влияющих на самовосприятие и самочувствие, выделим наиболее универсально значимые и при этом простые для понимания и контроля. Вот эти параметры: <b>опыт, сила, интеллект и мастерство</b>. </p>
+<p>Наверное ты согласишься, что <span class="P">быть сильным приятнее, чем слабым</span>, при прочих равных условиях, а <span class="I">умным приятнее, чем глупым</span>. <span class="E">Опыт — залог самостоятельности</span>, уверенности и свободы, а <span class="S">мастерство — наша уникальность</span>, тоже весьма полезное и желанное свойство.</p>
+<p><b>Всё это мы научимся измерять и изменять в нужную нам&nbsp;сторону.</b> </p>
+<p class="image"><img src="screen.png"/></p>
+<p>Сначала научимся наблюдать и измерять, затем понимать и менять. По вечерам, оценивая нашу дневную активность, будем начислять себе баллы, наблюдая, как меняется наше отношение к жизни и сама жизнь.<br/><b>Это не слишком быстрое волшебство, но его результат стоит&nbsp;нашего терпения.</b></p>
+<div class="block">&nbsp;</div>
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <div class="next"><a onclick="location.hash = 'info-scoring'">Правила игры</a></div>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="block page sub hidden" data-name="info-scoring">
+<div class="box">
+
+<h2 class="subtitle"><span>Правила игры</span></h2>
+<p>Одно небольшое полезное дело — 5&nbsp;баллов. Пять баллов в&nbsp;нашей системе означает «неплохо», <br/>10 — «хорошо», 15 — «отлично». Полученные баллы будут складываться в&nbsp;графическое отображение твоего дня, недели, месяца. Эта картинка о&nbsp;многом тебе расскажет уже через несколько дней и, главное, подскажет что делать, чтобы чувствовать себя лучше.</p>
+<p class="colored E"><b class="E">Опыт</b> — это, например, приготовить обед, сделать уборку — выполнить какую-то привычную полезную работу. Не только домашнюю — любую. Та работа, за которую платят деньги, тоже учитывается. Пять баллов начисляем примерно за 40-60 минут эффективного рабочего времени.</p>
+<p class="colored P"><b class="P">Сила.</b> Пять баллов можно заработать, сделав утреннюю разминку (у автора этих строк она занимает 15 минут), или&nbsp;небольшой комплекс силовых упражнений (например, 10 подтягива&shy;ний + 20 отжиманий + 30 приседаний). Ходьба, бег, велосипед, лыжи, закаливание и т.п. — всё это сила. Нормативы установи сам. Ведь никто лучше тебя не знает, что для тебя «неплохо», «хорошо» и «отлично».</p>
+<p class="colored I"><b class="I">Интеллект.</b> Если ты студент, то пять баллов можешь поставить себе за каждую пару (при условии, что не спал на них) или за самостоя&shy;тельное изучение чего-либо, или за чтение книги, в&nbsp;общем, за эффективную умственную деятельность длительностью час-полтора. За&nbsp;чтение художественной литературы больше пяти баллов в день мы обычно не ставим, у&nbsp;тебя может быть по-другому.</p>
+<p class="colored S"><b class="S">Мастерство.</b> Что-то творческое, например, играть на гитаре, рисовать, писать, готовить нестандартные блюда, шить, вязать, проектировать, строить... Когда&nbsp;делаешь что-то нешаблонное. Когда&nbsp;творишь или пытаешься творить. Работа, за&nbsp;которую ты получаешь деньги, может быть рутинная (тогда это опыт), интеллектуальная или творческая, она&nbsp;может включать сразу несколько компонентов, в том числе силовой. Распределяй оценки соответственно.</p>
+<p class="colored M"><b class="M">«Магия»</b> — что-то удивительное, такое, что&nbsp;хочется особо отметить, например, когда&nbsp;поймал рыбу, какую раньше не ловил, добился классного результата в&nbsp;мастерстве, научился чему-то новому. Различные яркие, интересные моменты в&nbsp;жизни. За&nbsp;«магию» ставим сразу 15 баллов, а&nbsp;ещё&nbsp;она даётся автоматически, если&nbsp;по другим измерениям в&nbsp;сумме получилось больше тридцати.</p>
+<p>Относись к&nbsp;себе как к&nbsp;лучшему другу и&nbsp;помни, что «сегодня» самый важный день в&nbsp;твоей жизни. Ведь только сегодня, не вчера и&nbsp;не завтра, ты можешь что-то изменить, что-то почувствовать, что-то сделать. Пусть твои дни будут яркими и&nbsp;насыщенными. </p>
+<div class="block">&nbsp;</div>
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <div class="next"><a onclick="location.hash = 'info-friends'">Баллы друзей</a></div>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="block page sub hidden" data-name="info-friends">
+<div class="box">
+
+<h2 class="subtitle"><span>Баллы друзей</span></h2>
+<p>Каждому пользователю прогрессинатора присваивается уникальный адрес. Если хочешь видеть прогресс и&nbsp;баллы друзей, добавь их адреса в&nbsp;эту&nbsp;таблицу:</p>
+
+<div id="friends">
+    <div class="field has-addons address">
+        <div class="control">
+            <input class="input" type="text" value="Твой адрес" disabled>
+        </div>
+        <div class="control">
+            <input class="input" type="text" value="" readonly>
+        </div>
+    </div>
+    <div class="field has-addons address hidden" id="friend--">
+        <div class="control">
+            <input maxlength="80" class="input name" name="name" type="text" placeholder="Имя друга">
+        </div>
+        <div class="control">
+            <input maxlength="16" class="input addr" name="addr" type="text" placeholder="Адрес">
+        </div>
+    </div>
+</div>
+<div class="block">&nbsp;</div>
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <div class="next"><a onclick="location.hash = 'info-badge'">Классные значки</a></div>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="block page sub hidden" data-name="info-badge">
+<div class="box">
+
+<h2 class="subtitle"><span>Классные значки</span></h2>
+<p class="image"><img src="badge.jpg"/></p>
+<p>Подобного вида значок ты получишь через два-четыре месяца (зависит от твоей активности). Картинку в&nbsp;центре можно заменить на любую. Обычно мы помещаем на свои значки вдохновляющих нас героев, настоящих или вымышленных. Цветные сектора — это твои достижения, каждый сектор = 150 баллов. <b>Развивайся и собирай классные значки. Если подключишь к этому делу своих родных или друзей, получится ещё интереснее.</b></p>
+<div class="block">&nbsp;</div>
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <div class="next"><a onclick="location.hash = 'info-coins'">Прогресскоины</a></div>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="block page sub hidden" data-name="info-coins">
+<div class="box">
+
+<h2 class="subtitle"><span>Прогресскоины</span></h2>
+<p>Эти единицы, которые можно конвертировать, например, в рубли, придумывались изначально&nbsp;для подростков как дополнительный механизм поощрения их целеустремлённости, самодисциплины и само&shy;развития. Теперь мы убедились в их общем позитивном эффекте — набирать баллы, делая полезные дела, стало ещё интереснее.</p>
+<p>Суть вовсе не в том, что хорошие дела делаются за деньги. Деньги здесь, в общем-то, символические, хоть и реальные. В нашей семье, например, коин равен рублю (выплачивается родителями по итогам месяца). Расценивать это&nbsp;как плату за труд — несерьёзно, посудите сами, чтобы заработать 5 баллов/коинов нужно осознанно и с&nbsp;пользой потратить 40-60 минут своего времени, в среднем.</p>
+<p>С другой стороны, получить пару тысяч рублей в конце месяца как премию за ответственность и старание, очень даже неплохо. Это вполне реально, хотя и совсем не так легко, как&nbsp;кажется. Если&nbsp;не верите, испытайте на себе.</p>
+<p>Некоторые баллы даются как бонусные: +15 начисляется за любой не пустой день (так мы приучаемся к аккуратности и осознанности), еще 15 прибавится, если в этот день были задействованы четыре цвета, не считая оранжевый (поощряем баланс в развитии), оранжевый цвет даёт ещё 15, вознаграждая за продук&shy;тивность. Всё вышеперечисленное имеет доказанный мотиви­рующий и воспитательный эффект. Однако не следует ждать быстрых чудесных превращений. Путь становления бывает трудным, поэтому запаситесь терпением и добротой по отношению к себе и тому, кто рядом.</p>
+<div class="block">&nbsp;</div>
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <div class="next"><a onclick="location.hash = 'info-shorewards'">Твой вклад</a></div>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="block page sub hidden" data-name="info-shorewards">
+<div class="box">
+
+<h2 class="subtitle"><span>Твой вклад</span></h2>
+<p class="colored M">Когда ты становишься немножко лучше — мир&nbsp;также становится немножко лучше. Может показаться, что немножко для мира — это ничто, но нет: во-первых, немножко — это точно лучше, чем ничто, а&nbsp;во-вторых, ты ведь не один, хороших людей на свете много, и&nbsp;давай верить, что&nbsp;их&nbsp;станет ещё&nbsp;больше.</p>
+<p class="note liked"><strong>Твоё участие мотивирует <br>придумывать и&nbsp;делать полезное. </strong> Поддержать и&nbsp;вдохновить автора на&nbsp;новые разработки можно<br/> по-разному, например, <a onclick="visit()">оставить добрый&nbsp;комментарий под одним из&nbsp;постов на&nbsp;его странице</a>.</p>
+
+
+
+
+<div class="block">&nbsp;</div>
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <div class="next"><a onclick="location.hash = 'plus-history'">Твоя история</a></div>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="block page sub hidden" data-name="info-settings">
+<div class="box">
+
+<h2 class="subtitle"><span>Ключи и режимы</span></h2>
+<p>Прогрессинатор может работать без интернета, если&nbsp;<a class="em" onclick="install()">установить</a> его как настольное приложение (и&nbsp;даже без электричества, если вести все записи в&nbsp;бумажном блокноте&nbsp;:). </p>
+<p>Если ты здесь впервые, скопируй и&nbsp;сохрани <a class="em" onclick="location.hash = 'info-settings_key'">персональный ключ</a>, чтобы не потерять свои баллы и&nbsp;настройки. С&nbsp;помощью такого ключа можно будет <a class="em" onclick="location.hash = 'info-settings_recovery'">восстановить</a> доступ к&nbsp;твоим данным (потребуется, если войдёшь с&nbsp;другого устройства или если сохранённые баллы исчезнут после удаления истории браузера).</p>
+<div class="block">&nbsp;</div>
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <div class="next"><a onclick="location.hash = 'homepage'">Прогрессинатор</a></div>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="block page sub hidden" data-name="plus-history">
+<div class="box">
+
+<div class="hidden">
+    <div class="history" id="empty-history">
+        <div class="field is-grouped">
+            <div class="control is-expanded">
+                <h3>История</h3>
+            </div>
+            <div class="control hidden">
+                <a onclick="location.hash = 'plus-badges'"><button class="button is-rounded glyph star is-warning"></button></a>
+            </div>
+        </div>
+        <div class="T">
+            <table>
+                <tr><td><div>Прочитать данные не удалось</div></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="histories">
+    <div class="history" id="my-history">
+        <div class="field is-grouped">
+            <div class="control is-expanded">
+                <h3>История</h3>
+            </div>
+            <div class="control">
+                <a onclick="displayAllBadges(); location.hash = 'plus-badges'"><button class="button is-rounded glyph star is-warning"></button></a>
+            </div>
+        </div>
+        <div class="T">
+            <table>
+                <tr><td><div>Прочитать данные не удалось</div></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <div class="next"><a onclick="location.hash = 'info-settings'">Ключи и режимы</a></div>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="block page sub hidden" data-name="plus-badges">
+<div class="box">
+
+<div id="badges">
+    <div class="stored-badge hidden">
+        <div class="field is-grouped">
+            <div class="control is-expanded">
+                <h3>
+                    <div class="tabs is-toggle is-toggle-rounded is-small">
+                      <ul>
+                        <li>
+                          <a class="glyph half" onclick="toggleSolidity()"></a>
+                        </li>
+                      </ul>
+                    </div>
+                </h3>
+            </div>
+            <div class="control">
+                <a onclick="location.hash = 'plus-history'"><button class="button is-rounded glyph calendar"></button></a>
+            </div>
+        </div>
+        <div class="has-text-centered">
+            <img class="badge" />
+        </div>
+    </div>
+</div>
+
+<div class="field is-grouped">
+    <div class="control is-expanded">
+        <h3>20</h3><h3 id="registration-date"></h3>
+    </div>
+    <div class="control">
+        <a onclick="location.hash = 'homepage'"><button class="button is-rounded glyph upward"></button></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="modal" id="menu">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+
+        <nav class="panel">
+            <a class="panel-block" onclick="location.hash = 'info-about'">Что это</a>
+            <a class="panel-block" onclick="location.hash = 'info-scoring'">Правила игры</a>
+            <a class="panel-block" onclick="location.hash = 'info-friends'">Баллы друзей</a>
+            <a class="panel-block" onclick="location.hash = 'info-badge'">Классные значки</a>
+            <a class="panel-block" onclick="location.hash = 'info-coins'">Прогресскоины</a>
+            <a class="panel-block" onclick="location.hash = 'info-shorewards'">Твой вклад</a>
+            <a class="panel-block" onclick="location.hash = 'plus-history'">История</a>
+            <a class="panel-block" onclick="location.hash = 'info-settings'">Настройки</a>
+        </nav>
+    </div>
+</div>
+
+
+
+<div class="modal" id="key">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <p class="block">С помощью персонального ключа можно будет восстановить доступ к&nbsp;твоим данным, в&nbsp;случае смены браузера или удаления его истории. <b>Скопируй его сейчас и&nbsp;сохрани в&nbsp;надёжном месте:</b></p>
+            <p class="block"><textarea id="token" placeholder="Ключ отсутствует" class="textarea" readonly></textarea></p>
+            <p class="block">
+                <label class="checkbox">
+                    <input type="checkbox" onchange="this.checked && trackSave()">
+                    Сделано
+                </label>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" id="recovery">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <p>Твой персональный ключ:</p>
+            <textarea class="block textarea" placeholder="Вставить сюда..." id="import"></textarea>
+            <button class="button is-warning" onclick="restore()">Применить</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" id="upload">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box has-text-centered">
+            <h2 class="subtitle">Выбери героя</h2>
+            <div class="block"><img id="uploaded" src="" /></div>
+            <div class="file is-centered is-dark">
+                <label class="file-label">
+                    <input class="file-input" type="file" id="fileinput" accept=".jpg, .png, .jpeg, .gif">
+                    <span class="file-cta">
+                        <span class="file-label">
+                            Выбрать файл
+                        </span>
+                    </span>
+                </label>
+            </div>
+            <p class="buttons is-centered">
+                <button class="button is-warning" onclick="resetHero();">Удалить</button>
+                <button class="button is-success" onclick="applyImage(); location.hash = location.hash.split('_')[0];">Применить</button>
+            </p>
+            <div class="buttons is-centered" style="margin-top:-1rem">
+                <button class="button" onclick="location.hash = location.hash.split('_')[0];">Отменить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" id="installation-alert">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box">
+            <h2 class="subtitle">Что-то пошло не так</h2>
+            <p class="block">Возможно эта функция не поддерживается твоим браузером или приложение уже установлено. Если не можешь найти иконку <b>Прогрессинатора</b> на своём рабочем столе, попробуй открыть сайт <a onclick="openExternalLink('https://lifetuner.surge.sh')">lifetuner.surge.sh</a> в&nbsp;новом окне <b>Chrome</b> и&nbsp;повторить попытку.</p>
+            <p>
+                <button class="button is-warning" onclick="location.hash = location.hash.split('_')[0];">OK</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="hidden">
+    <img id="sticker-image" />
+    <input type="hidden" id="days" value="воскресенье понедельник вторник среда четверг пятница суббота" />
+    <input type="hidden" id="subscribed" value="Ты уже подписан).Спасибо!" />
+    <input type="hidden" id="wrong-token" value="Этот ключ недействителен." />
+    <input type="hidden" id="no-connection" value="Не удаётся соединиться с сервером." />
+    <input type="hidden" id="unknown-error" value="Неизвестная ошибка." />
+    <input type="hidden" id="server-error" value="Ошибка сервера." />
+</div>
+
+<div class="block page" id="sticker">
+<div class="box">
+
+</div>
+</div>
+
+
+</body>
+</html>

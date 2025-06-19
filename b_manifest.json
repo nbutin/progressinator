@@ -1,0 +1,8 @@
+{
+  "id": "lifetuner.app",
+  "name": "Life Tuner",
+  "description": "Оригинальная система самопознания и саморазвития. Инструмент, который сделает твою жизнь более продуктивной и увлекательной!",
+  "author": "PHN3UprgHjMPQsiXkqEju9bAqCmD73H6B9",
+  "scope": "progressinator.web.app",
+  "permissions": ["account", "sign", "externallink"]
+}
