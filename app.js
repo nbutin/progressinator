@@ -37,6 +37,7 @@ function activateControls() {
         document.querySelector('table.plus').classList.remove('disabled');
         app_activated = true;
     }
+    document.getElementById('like').classList.add('X');
 }
 
 
@@ -139,7 +140,7 @@ function setPoints(cell) {
     let score = str(_values.history[formatDate(_displayed_date)]);
     const points = score.split(cell.id.slice(0, 1)).length - 1;
     let like = document.getElementById('like');
-    'EPISM'.split('').forEach((i) => {
+    'XEPISM'.split('').forEach((i) => {
         like.classList.remove(i);
     });
     like.classList.add(cell.id.slice(0, 1));
