@@ -42,7 +42,7 @@ sssssssssssss.page.block:not(:last-child){margin-bottom:1rem;}
 .glyph.arrow-left {background-image:url(icons/arrow-left.svg);}
 .glyph.arrow-right {background-image:url(icons/arrow-right.svg);}
 .glyph.calendar {background-image:url(icons/calendar.svg);}
-.glyph.question {background-image:url(icons/book.svg?v=1);}
+.glyph.question {background-image:url(icons/book.svg);}
 .glyph.star {background-image:url(icons/star.svg);}
 .glyph.half {background-image:url(icons/half.svg);}
 .glyph.full {background-image:url(icons/full.svg);}
