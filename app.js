@@ -37,7 +37,6 @@ function activateControls() {
         document.querySelector('table.plus').classList.remove('disabled');
         app_activated = true;
     }
-    document.getElementById('like').classList.add('X');
 }
 
 
@@ -65,6 +64,7 @@ function initApp() {
 
 function drawInitialElements() {
     hideInstruction();
+    document.getElementById('like').classList.add('X');
     drawCoins();
     shiftDate(0);
     drawBadge();
