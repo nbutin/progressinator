@@ -1,0 +1,44 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source":"/sw.js|/|/index.html|/b_manifest.json|/b_icon.png",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      },
+      {
+        "source": "**", // Apply to all files
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*" // Allow requests from any origin
+          },
+          {
+            "key": "Access-Control-Allow-Methods",
+            "value": "GET, POST, PUT, DELETE, OPTIONS" // Allowed HTTP methods
+          },
+          {
+            "key": "Access-Control-Allow-Headers",
+            "value": "Content-Type, Authorization" // Allowed headers
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -815,7 +815,7 @@ function addStatisticsRows(addr, name) {
         table0.appendChild(node0);
     } else {
         if (name.length > 4) name = name.slice(0, 3) + '.';
-        var values = loadValues(stored(addr));
+        var values = loadValues(stored(addr) || {});
     }
     let node1 = makeStatisticsRowNode(addr, name, ...countCoins(values.history[yest] || ''));
     table1.appendChild(node1);
