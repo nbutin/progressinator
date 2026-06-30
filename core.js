@@ -327,8 +327,7 @@ function encodeUriParams(obj) {
 
 
 function useTelegraph(method, params, resultCallback, errorCallback, strict) {
-    //~ fetch(`https://api.telegra.ph/${method}`, {
-    fetch(`https://shorewards.ru/${method}`, {
+    fetch(`https://api.telegra.ph/${method}`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

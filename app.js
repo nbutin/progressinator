@@ -764,7 +764,6 @@ function updateFriends(target) {
 
 function drawCoins() {
     addStatisticsRows();
-    console.log(111111111115);
     for (i of Object.values(_values.friends)) {
         let [addr, name] = i.split(';');
         addStatisticsRows(addr, name);
