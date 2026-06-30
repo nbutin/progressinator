@@ -764,6 +764,7 @@ function updateFriends(target) {
 
 function drawCoins() {
     addStatisticsRows();
+    console.log(111111111115);
     for (i of Object.values(_values.friends)) {
         let [addr, name] = i.split(';');
         addStatisticsRows(addr, name);
@@ -851,7 +852,7 @@ function saveMonthCoins() {
 
 
 function makeStatisticsRowNode(id, name, a, b1, b2, b3, sum) {
-    if (!id) [a, b1, b2, b3, sum] = ['a', 'b1', 'b2', 'b3', 'sum'];
+    if (!name) [a, b1, b2, b3, sum] = ['a', 'b1', 'b2', 'b3', 'sum'];
     var html = `<tr name="${id||''}"><td>${name||''}</td><td>${a||0}</td> <td>${b1||0}</td><td>${b2||0}</td><td>${b3||0}</td><td>${sum||0}</td></tr>`;
     const template = document.createElement('template');
     template.innerHTML = html;
